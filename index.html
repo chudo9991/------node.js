@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Кванториум</title>
+    <meta charset="utf-8" />
+    <style>
+        body,
+        article {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body {
+            height: 98vh;
+        }
+
+        article {
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .cat-button {
+            margin-top: 2vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Случайная собака</h1>
+    <article class="content">
+
+    </article>
+    <button class="cat-button">Random Dog</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const content = document.querySelector('.content');
+            let response = await fetch('https://dog.ceo/api/breeds/image/random');
+            let json = await response.json();
+            let image = document.createElement("img");
+
+            image.setAttribute("width", "100%");
+            image.setAttribute("src", json.message);
+            content.appendChild(image);
+
+            document.querySelector('.cat-button').addEventListener('click', async function () {
+
+                response = await fetch('https://dog.ceo/api/breeds/image/random');
+                json = await response.json();
+                image.setAttribute("src", json.message);
+
+            });
+        });
+    </script>
+</body>
+
+</html>
